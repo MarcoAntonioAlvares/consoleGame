@@ -10,6 +10,16 @@ public class Personagem {
 
     public int HP;
 
+    public int experiencia;
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -53,6 +63,38 @@ public class Personagem {
         }
 
     }
+    public void atacar(Personagem alvo, int poderDeAtaque) {
+        if (poderDeAtaque > 0) {
+            alvo.receberDano(poderDeAtaque);
+            System.out.println(this.nome + " atacou " + alvo.getNome() + " causando " + poderDeAtaque + " de dano!");
+        } else {
+            System.out.println(this.nome + " atacou " + alvo.getNome() + ", mas o ataque não causou dano!");
+        }
+    }
+
+    private void receberDano(int danoCausado) {
+    }
+
+    public void ganharExperiencia(int experienciaGanha) {
+        this.experiencia += experienciaGanha;
+        System.out.println(this.nome + " ganhou " + experienciaGanha + " de experiência.");
+        verificarNivel();
+    }
+
+    private void verificarNivel() {
+    }
+
+
+    public boolean fugirDeBatalha() {
+        boolean conseguiuFugir = Math.random() < 0.5;
+        if (conseguiuFugir) {
+            System.out.println(this.nome + " conseguiu fugir da batalha!");
+        } else {
+            System.out.println(this.nome + " tentou fugir, mas não teve sucesso e continua na batalha.");
+        }
+        return conseguiuFugir;
+    }
+
 
     public Personagem(String nome, Raca raca, int nivel, int HP) {
         this.nome = nome;
